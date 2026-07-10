@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>築夢愛爾國際留遊學顧問 · 找到你的出發理由</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:    #0A6E6E;
+  --teal-dk: #085858;
+  --teal-md: #5BBCBC;
+  --teal-lt: #E0F4F4;
+  --teal-bg: #F0FAFA;
+  --amber-lt:#FEF3C7;
+  --red-lt:  #FEE2E2;
+  --green-lt:#D1FAE5;
+  --ink:     #1A1A2E;
+  --ink-60:  #1A1A2E99;
+  --ink-30:  #1A1A2E4D;
+  --surface: #FAFAF8;
+  --card:    #FFFFFF;
+  --border:  #E8E6E0;
+  --font:    'Noto Sans TC', sans-serif;
+  --mono:    'DM Mono', monospace;
+  --r:       14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--surface);color:var(--ink);font-size:15px;line-height:1.65;}
+
+/* NAV */
+.nav{background:var(--teal);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:18px;color:#fff;line-height:1.2;}
+.nav-logo span{font-family:var(--font);font-size:10px;font-weight:300;color:rgba(255,255,255,.6);display:block;letter-spacing:.1em;text-transform:uppercase;}
+
+/* SCREENS */
+.screen{display:none;animation:fadeUp .3s ease;}
+.screen.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── HERO ── */
+.hero{min-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;background:linear-gradient(160deg,var(--teal-bg) 0%,var(--surface) 65%);}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--teal-lt);border:1px solid var(--teal-md);color:var(--teal);font-size:12px;font-weight:500;padding:5px 16px;border-radius:20px;margin-bottom:22px;font-family:var(--mono);letter-spacing:.05em;}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(26px,5vw,44px);color:var(--ink);line-height:1.2;margin-bottom:14px;max-width:560px;}
+.hero h1 em{color:var(--teal);font-style:normal;}
+.hero p{font-size:15px;color:var(--ink-60);max-width:460px;margin-bottom:32px;line-height:1.75;}
+.hero-steps{display:flex;gap:10px;margin-bottom:36px;flex-wrap:wrap;justify-content:center;}
+.hero-step{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;font-size:13px;color:var(--ink-60);display:flex;align-items:center;gap:8px;}
+.btn-start{padding:15px 44px;background:var(--teal);color:#fff;border:none;border-radius:40px;font-size:15px;font-weight:500;font-family:var(--font);cursor:pointer;transition:all .2s;}
+.btn-start:hover{background:var(--teal-dk);transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,110,110,.2);}
+.hero-note{font-size:12px;color:var(--ink-30);margin-top:14px;}
+
+/* ── INTAKE ── */
+.intake-wrap{max-width:600px;margin:0 auto;padding:48px 24px 80px;}
+.progress-row{display:flex;align-items:center;gap:12px;margin-bottom:40px;}
+.progress-bar{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--teal);border-radius:2px;transition:width .4s ease;}
+.progress-label{font-size:12px;font-family:var(--mono);color:var(--ink-30);white-space:nowrap;}
+.q-block{display:none;animation:fadeUp .25s ease;}
+.q-block.active{display:block;}
+.q-label{font-size:11px;font-weight:500;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-family:var(--mono);}
+.q-text{font-size:21px;font-weight:500;line-height:1.35;margin-bottom:6px;}
+.q-sub{font-size:13px;color:var(--ink-60);margin-bottom:26px;}
+.multi-hint{font-size:12px;color:var(--ink-30);font-style:italic;margin-bottom:10px;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.opt{display:flex;align-items:flex-start;gap:14px;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--r);background:var(--card);cursor:pointer;transition:all .18s;text-align:left;font-family:var(--font);font-size:14px;color:var(--ink);line-height:1.5;width:100%;}
+.opt:hover{border-color:var(--teal-md);background:var(--teal-bg);}
+.opt.sel{border-color:var(--teal);background:var(--teal-lt);color:var(--teal);font-weight:500;}
+.opt.sel .dot{background:var(--teal);border-color:var(--teal);}
+.dot{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;margin-top:1px;transition:all .18s;}
+.nav-btns{display:flex;gap:12px;margin-top:28px;}
+.btn-back{padding:12px 22px;border:1.5px solid var(--border);border-radius:40px;background:transparent;color:var(--ink-60);font-size:14px;font-family:var(--font);cursor:pointer;transition:all .18s;}
+.btn-back:hover{border-color:var(--ink-60);color:var(--ink);}
+.btn-next{padding:12px 30px;border-radius:40px;background:var(--teal);color:#fff;font-size:14px;font-weight:500;font-family:var(--font);border:none;cursor:pointer;transition:all .18s;}
+.btn-next:hover{background:var(--teal-dk);}
+.btn-next:disabled{opacity:.35;cursor:not-allowed;}
+
+/* ── LEAD FORM ── */
+.form-wrap{max-width:600px;margin:0 auto;padding:40px 24px 80px;}
+.form-header{margin-bottom:32px;}
+.form-header h2{font-family:'DM Serif Display',serif;font-size:28px;color:var(--teal);margin-bottom:8px;}
+.form-header p{font-size:14px;color:var(--ink-60);line-height:1.7;}
+.free-note{display:flex;align-items:flex-start;gap:10px;background:var(--teal-lt);border:1px solid var(--teal-md);border-radius:var(--r);padding:14px 16px;margin-bottom:28px;font-size:13px;color:var(--teal);line-height:1.6;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:12px;font-weight:500;color:var(--ink-60);margin-bottom:6px;letter-spacing:.03em;}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:var(--font);color:var(--ink);background:var(--surface);transition:border-color .18s;outline:none;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal);background:#fff;}
+.field textarea{resize:vertical;min-height:80px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.privacy{font-size:12px;color:var(--ink-30);margin-bottom:18px;line-height:1.65;}
+.btn-submit{width:100%;padding:15px;background:var(--teal);color:#fff;border:none;border-radius:40px;font-size:15px;font-weight:500;font-family:var(--font);cursor:pointer;transition:all .2s;}
+.btn-submit:hover{background:var(--teal-dk);transform:translateY(-1px);}
+.btn-submit:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+
+
+/* ── VALIDATION ── */
+.v-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  font-size: 18px;
+  font-weight: 500;
+  font-family: var(--font);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all .18s;
+  position: relative;
+}
+.v-btn span {
+  font-size: 9px;
+  font-weight: 400;
+  color: var(--ink-30);
+  margin-top: 2px;
+  text-align: center;
+  line-height: 1.2;
+}
+.v-btn:hover { border-color: var(--teal-md); background: var(--teal-bg); }
+.v-btn.sel { border-color: var(--teal); background: var(--teal-lt); color: var(--teal); }
+.v-btn.sel span { color: var(--teal); }
+
+/* ── SENDING STATE ── */
+.sending-wrap{max-width:500px;margin:120px auto;padding:0 24px;text-align:center;}
+.spinner{width:44px;height:44px;border:3px solid var(--teal-lt);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 20px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.sending-wrap h3{font-size:18px;font-weight:500;margin-bottom:6px;}
+.sending-wrap p{font-size:14px;color:var(--ink-60);}
+
+/* ── RESULT ── */
+.result-wrap{max-width:680px;margin:0 auto;padding:40px 24px 80px;}
+.result-hero{background:var(--teal);border-radius:20px;padding:32px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden;}
+.result-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.06);}
+.r-eyebrow{font-size:11px;font-family:var(--mono);letter-spacing:.1em;opacity:.65;text-transform:uppercase;margin-bottom:10px;}
+.r-title{font-family:'DM Serif Display',serif;font-size:26px;margin-bottom:8px;}
+.r-body{font-size:14px;opacity:.85;line-height:1.65;}
+.r-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;margin-top:16px;}
+.section-label{font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-30);margin-bottom:12px;}
+.bpills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.bpill{display:inline-flex;align-items:center;padding:5px 13px;border-radius:20px;font-size:13px;font-weight:500;}
+.bp-comparison{background:#FEF3C7;color:#78350F;}
+.bp-budget{background:#DBEAFE;color:#1E3A8A;}
+.bp-trust{background:#EDE9FE;color:#4C1D95;}
+.bp-direction{background:#D1FAE5;color:#065F46;}
+.bp-reality{background:#FCE7F3;color:#831843;}
+.bp-execution{background:#F3F4F6;color:#374151;}
+.esc-row{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.esc-box{border-radius:var(--r);padding:16px 18px;}
+.esc-ai{background:var(--green-lt);border:1px solid #A7F3D0;}
+.esc-both{background:var(--amber-lt);border:1px solid #FDE68A;}
+.esc-human{background:var(--red-lt);border:1px solid #FECACA;}
+.esc-title{font-size:14px;font-weight:500;margin-bottom:4px;}
+.esc-body{font-size:13px;color:var(--ink-60);line-height:1.65;}
+.email-notice{background:var(--teal-lt);border:1px solid var(--teal-md);border-radius:var(--r);padding:16px 18px;margin-bottom:20px;font-size:13px;color:var(--teal);line-height:1.65;}
+.result-footer{text-align:center;padding-top:8px;}
+.btn-ig{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--teal);color:#fff;border-radius:40px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s;font-family:var(--font);border:none;cursor:pointer;}
+.btn-ig:hover{background:var(--teal-dk);}
+.result-note{font-size:12px;color:var(--ink-30);margin-top:12px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">築夢愛爾國際留遊學顧問<span>決策卡關診斷 · Beta</span></div>
+</nav>
+
+<!-- ══ S0: HERO ══ -->
+<div class="screen active" id="s-hero">
+  <div class="hero">
+    <div class="hero-badge">🇮🇪 築夢愛爾國際留遊學顧問</div>
+    <h1>你不是資訊不夠，<br>你只是還不知道<em>自己卡在哪</em></h1>
+    <p>5 個問題，幫你找出決策卡關的真正原因，並告訴你諮詢前可以先準備什麼。填完後顧問會主動聯繫你。</p>
+    <div class="hero-steps">
+      <div class="hero-step">⏱️ 約 3 分鐘</div>
+      <div class="hero-step">🔒 不需要事先做功課</div>
+      <div class="hero-step">📩 診斷報告寄到你的 Email</div>
+    </div>
+    <button class="btn-start" onclick="go('s-intake')">開始找出我的卡關點 →</button>
+    <div class="hero-note">築夢愛爾國際留遊學顧問 · 台灣學生愛爾蘭留遊學專業諮詢</div>
+  </div>
+</div>
+
+<!-- ══ S1: INTAKE ══ -->
+<div class="screen" id="s-intake">
+  <div class="intake-wrap">
+    <div class="progress-row">
+      <div class="progress-bar"><div class="progress-fill" id="prog" style="width:20%"></div></div>
+      <span class="progress-label" id="prog-label">1 / 5</span>
+    </div>
+
+    <!-- Q1 -->
+    <div class="q-block active" id="q1">
+      <div class="q-label">Q1</div>
+      <div class="q-text">你現在最接近哪個狀態？</div>
+      <div class="q-sub">沒有標準答案，選最接近的就好。</div>
+      <div class="opts">
+        <button class="opt" onclick="pick1(this,'q1')"><span class="dot"></span>只是想出去看看，還沒認真想過</button>
+        <button class="opt" onclick="pick1(this,'q1')"><span class="dot"></span>大概知道想去愛爾蘭，但還沒開始計畫</button>
+        <button class="opt" onclick="pick1(this,'q1')"><span class="dot"></span>正在比較語校或方案，卡在選擇上</button>
+        <button class="opt" onclick="pick1(this,'q1')"><span class="dot"></span>想報名了，但還沒下決定</button>
+        <button class="opt" onclick="pick1(this,'q1')"><span class="dot"></span>已決定，正在準備文件或等待出發</button>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-next" id="n1" onclick="nxt(1)" disabled>下一題 →</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-block" id="q2">
+      <div class="q-label">Q2</div>
+      <div class="q-text">目前最大的卡關是什麼？</div>
+      <div class="q-sub">可以選多個，選到你覺得「對！就是這樣」為止。</div>
+      <div class="multi-hint">可複選</div>
+      <div class="opts">
+        <button class="opt" onclick="pickM(this,'q2')"><span class="dot"></span>預算，不確定要準備多少錢</button>
+        <button class="opt" onclick="pickM(this,'q2')"><span class="dot"></span>英文能力，怕跟不上或找不到工作</button>
+        <button class="opt" onclick="pickM(this,'q2')"><span class="dot"></span>家人擔心或不支持</button>
+        <button class="opt" onclick="pickM(this,'q2')"><span class="dot"></span>學校太多，不知道怎麼選</button>
+        <button class="opt" onclick="pickM(this,'q2')"><span class="dot"></span>不確定自己適不適合出國</button>
+        <button class="opt" onclick="pickM(this,'q2')"><span class="dot"></span>不知道該相信哪裡的資訊</button>
+        <button class="opt" onclick="pickM(this,'q2')"><span class="dot"></span>對工作機會和薪資不確定</button>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prv(2)">← 上一題</button>
+        <button class="btn-next" id="n2" onclick="nxt(2)" disabled>下一題 →</button>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-block" id="q3">
+      <div class="q-label">Q3</div>
+      <div class="q-text">你最想得到哪種幫助？</div>
+      <div class="q-sub">選最符合你現在需求的。</div>
+      <div class="opts">
+        <button class="opt" onclick="pick1(this,'q3')"><span class="dot"></span>整理資訊，讓我搞清楚費用和流程</button>
+        <button class="opt" onclick="pick1(this,'q3')"><span class="dot"></span>比較選項，幫我縮小語校或方案的範圍</button>
+        <button class="opt" onclick="pick1(this,'q3')"><span class="dot"></span>真人建議，有人根據我的狀況說說看</button>
+        <button class="opt" onclick="pick1(this,'q3')"><span class="dot"></span>釐清自己，幫我想清楚要不要去、去做什麼</button>
+        <button class="opt" onclick="pick1(this,'q3')"><span class="dot"></span>行動清單，告訴我接下來做什麼</button>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prv(3)">← 上一題</button>
+        <button class="btn-next" id="n3" onclick="nxt(3)" disabled>下一題 →</button>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-block" id="q4">
+      <div class="q-label">Q4</div>
+      <div class="q-text">預計出發時間大概是？</div>
+      <div class="q-sub">不確定也沒關係，填大概的就好。</div>
+      <div class="opts">
+        <button class="opt" onclick="pick1(this,'q4')"><span class="dot"></span>3 個月內</button>
+        <button class="opt" onclick="pick1(this,'q4')"><span class="dot"></span>3–6 個月</button>
+        <button class="opt" onclick="pick1(this,'q4')"><span class="dot"></span>6–12 個月</button>
+        <button class="opt" onclick="pick1(this,'q4')"><span class="dot"></span>1 年以上，或還不確定</button>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prv(4)">← 上一題</button>
+        <button class="btn-next" id="n4" onclick="nxt(4)" disabled>下一題 →</button>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-block" id="q5">
+      <div class="q-label">Q5</div>
+      <div class="q-text">做這個決定有沒有需要溝通的人？</div>
+      <div class="q-sub">家人的態度有時候是決策卡關的主因，所以想先了解。</div>
+      <div class="opts">
+        <button class="opt" onclick="pick1(this,'q5')"><span class="dot"></span>完全我自己決定，不需要說服任何人</button>
+        <button class="opt" onclick="pick1(this,'q5')"><span class="dot"></span>家人有點擔心，但可以溝通</button>
+        <button class="opt" onclick="pick1(this,'q5')"><span class="dot"></span>家人比較反對，需要很多說服</button>
+        <button class="opt" onclick="pick1(this,'q5')"><span class="dot"></span>有朋友一起計畫，需要一起決定</button>
+      </div>
+      <div class="nav-btns">
+        <button class="btn-back" onclick="prv(5)">← 上一題</button>
+        <button class="btn-next" id="n5" onclick="nxt(5)" disabled>下一題 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S2: LEAD FORM ══ -->
+<div class="screen" id="s-form">
+  <div class="form-wrap">
+    <div class="form-header">
+      <h2>最後一步：留下你的資料</h2>
+      <p>填完後我們會把你的個人診斷報告寄到你的 Email，可以先存起來慢慢看。</p>
+    </div>
+
+    <div class="free-note">
+      📩 <span>不論你之後想不想諮詢，這份診斷報告都會是你的——我們不會用它來說服你做任何決定。</span>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>姓名或暱稱 *</label>
+        <input type="text" id="f-name" placeholder="怎麼稱呼你？">
+      </div>
+      <div class="field">
+        <label>Email *</label>
+        <input type="email" id="f-email" placeholder="診斷報告會寄到這裡">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>IG 帳號（選填）</label>
+      <input type="text" id="f-ig" placeholder="@your_handle，方便顧問聯繫">
+    </div>
+
+    <div class="field">
+      <label>Line ID（選填）</label>
+      <input type="text" id="f-line" placeholder="你的 Line ID">
+    </div>
+
+    <div class="field">
+      <label>你目前最想聊的一個問題（選填）</label>
+      <textarea id="f-q" placeholder="不用寫得很完整，隨便說說就好，幫顧問先了解你的狀況"></textarea>
+    </div>
+
+    <div class="field">
+      <label>偏好的聯繫方式</label>
+      <select id="f-contact">
+        <option value="">請選擇</option>
+        <option value="ig">IG 私訊</option>
+        <option value="email">Email</option>
+        <option value="line">Line</option>
+      </select>
+    </div>
+
+    <p class="privacy">🔒 你的資料只用於安排這次諮詢，不會用於其他用途或分享給第三方。</p>
+
+    <div class="field" style="display:flex;align-items:flex-start;gap:10px;margin-bottom:24px;padding:14px 16px;background:var(--surface);border-radius:10px;border:1px solid var(--border);">
+      <input type="checkbox" id="f-consent" style="width:18px;height:18px;margin-top:2px;flex-shrink:0;cursor:pointer;accent-color:var(--teal);">
+      <label for="f-consent" style="font-size:13px;color:var(--ink);line-height:1.6;cursor:pointer;font-weight:400;">我希望顧問看過我的診斷報告後，主動聯繫我安排諮詢時間。<br><span style="color:var(--ink-60);font-size:12px;">（不勾選也完全沒問題，你一樣會收到完整的診斷報告）</span></label>
+    </div>
+
+    <button class="btn-submit" id="f-submit" onclick="submitForm()">送出，領取我的診斷報告 →</button>
+  </div>
+</div>
+
+
+    <!-- V1 -->
+
+<!-- ══ S3: SENDING ══ -->
+<div class="screen" id="s-sending">
+  <div class="sending-wrap">
+    <div class="spinner"></div>
+    <h3>正在處理你的資料⋯</h3>
+    <p>稍等一下，診斷報告馬上寄出。</p>
+  </div>
+</div>
+
+<!-- ══ S4: RESULT ══ -->
+<div class="screen" id="s-result">
+  <div class="result-wrap">
+
+    <div class="email-notice" style="background:var(--amber-lt);border-color:#FDE68A;color:#78350F;">
+      👇 看完結果後，往下填寫幾題快速回饋，就可以收到你的完整診斷報告！
+    </div>
+
+    <div class="result-hero">
+      <div class="r-eyebrow">築夢愛爾國際留遊學顧問 · 決策卡關診斷報告</div>
+      <div class="r-title" id="r-title">你正卡在「選擇懸置期」</div>
+      <div class="r-body" id="r-body">你已經有出國的想法，但在選項太多的情況下，無法做出決定。</div>
+      <div class="r-badge" id="r-badge">⚡ 建議配合真人諮詢</div>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div class="section-label">你的主要卡關類型</div>
+      <div class="bpills" id="r-pills"></div>
+    </div>
+
+    <div class="esc-row">
+      <div class="esc-box esc-ai">
+        <div class="esc-title">✅ 顧問諮詢前可以幫你整理的部分</div>
+        <div class="esc-body" id="r-ai"></div>
+      </div>
+      <div class="esc-box esc-both">
+        <div class="esc-title">⚠️ 你可以先自己想一想的部分</div>
+        <div class="esc-body" id="r-both"></div>
+      </div>
+      <div class="esc-box esc-human">
+        <div class="esc-title">👤 這部分我們選擇不讓系統來回答</div>
+        <div class="esc-body" id="r-human"></div>
+      </div>
+    </div>
+
+    
+    <!-- Validation -->
+    <div id="validation-section" style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-top:20px;">
+      <div style="font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-30);margin-bottom:16px;">看完結果後，快速問你幾題</div>
+
+      <!-- V1 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:15px;font-weight:500;margin-bottom:6px;">Q1 填問卷之前，你對「自己卡在哪裡」有多清楚？</div>
+        <div style="font-size:12px;color:var(--ink-60);margin-bottom:12px;">1 = 完全不清楚　5 = 非常清楚</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="v-btn" onclick="pickV('v1',1,this)">1<span>完全不清楚</span></button>
+          <button class="v-btn" onclick="pickV('v1',2,this)">2</button>
+          <button class="v-btn" onclick="pickV('v1',3,this)">3</button>
+          <button class="v-btn" onclick="pickV('v1',4,this)">4</button>
+          <button class="v-btn" onclick="pickV('v1',5,this)">5<span>非常清楚</span></button>
+        </div>
+      </div>
+
+      <!-- V2 -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:15px;font-weight:500;margin-bottom:12px;">Q2 看完診斷報告，有幫你更釐清方向嗎？</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <button class="opt" style="font-size:13px;" onclick="pickV1('v2','有，比填之前更清楚了',this,true)"><span class="dot"></span>有，比填之前更清楚了</button>
+          <button class="opt" style="font-size:13px;" onclick="pickV1('v2','有一點，但還是有些模糊',this,true)"><span class="dot"></span>有一點，但還是有些模糊</button>
+          <button class="opt" style="font-size:13px;" onclick="pickV1('v2','沒有特別感覺',this,false)"><span class="dot"></span>沒有特別感覺</button>
+          <button class="opt" style="font-size:13px;" onclick="pickV1('v2','反而更混亂了',this,false)"><span class="dot"></span>反而更混亂了</button>
+        </div>
+      </div>
+
+      <!-- V_ACCURACY：這個結果準嗎 -->
+      <div id="v-accuracy-block" style="margin-bottom:20px;">
+        <div style="font-size:15px;font-weight:500;margin-bottom:12px;">Q3 這個結果，你覺得準嗎？</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <button class="opt" style="font-size:13px;" onclick="pickAccuracy('準，跟我的狀況蠻接近的',this,true)"><span class="dot"></span>準，跟我的狀況蠻接近的</button>
+          <button class="opt" style="font-size:13px;" onclick="pickAccuracy('大致準，但有些地方不太像我',this,true)"><span class="dot"></span>大致準，但有些地方不太像我</button>
+          <button class="opt" style="font-size:13px;" onclick="pickAccuracy('不太準，感覺不是這樣',this,false)"><span class="dot"></span>不太準，感覺不是這樣</button>
+        </div>
+      </div>
+
+      <!-- 低信任分流：先判定是哪一種，再給對應提示 -->
+      <div id="v-lowtrust-block" style="display:none;margin-bottom:20px;">
+        <div style="font-size:15px;font-weight:500;margin-bottom:6px;">補問一題：這個結果，比較像哪種情況？</div>
+        <div style="font-size:12px;color:var(--ink-60);margin-bottom:12px;">沒有對錯，只是想更了解你現在的狀態。</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <button class="opt" style="font-size:13px;" onclick="pickLowTrustType('brand',this)"><span class="dot"></span>結果跟我的狀況不太像，我有點懷疑這個診斷</button>
+          <button class="opt" style="font-size:13px;" onclick="pickLowTrustType('clarity',this)"><span class="dot"></span>結果還算合理，只是我自己也還沒想清楚要什麼</button>
+        </div>
+      </div>
+
+      <!-- 低信任分流提示：依判定結果顯示不同文案 -->
+      <div id="v-lowtrust-notice-brand" style="display:none;background:var(--amber-lt);border:1px solid #FDE68A;border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:13px;color:#78350F;line-height:1.6;">
+        謝謝你的誠實回饋。我們不會用更多問題來換你的報告——報告現在就會寄給你，如果你之後想聊，我們會在，不會催。
+      </div>
+      <div id="v-lowtrust-notice-clarity" style="display:none;background:var(--teal-lt);border:1px solid var(--teal-md);border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:13px;color:var(--teal);line-height:1.6;">
+        這很正常——很多人在這個階段都還沒想清楚，這不代表診斷不準，只是代表你需要的可能不是答案，而是先有人陪你想一想。報告現在就會寄給你。
+      </div>
+
+      <!-- V3：行動信心，低信任分流時會被跳過 -->
+      <div id="v3-block" style="margin-bottom:20px;">
+        <div style="font-size:15px;font-weight:500;margin-bottom:6px;">Q4 現在對「下一步要做什麼」的行動信心是幾分？</div>
+        <div style="font-size:12px;color:var(--ink-60);margin-bottom:12px;">1 = 完全不知道要做什麼　5 = 很清楚下一步</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="v-btn" onclick="pickV('v3',1,this)">1<span>完全不知道</span></button>
+          <button class="v-btn" onclick="pickV('v3',2,this)">2</button>
+          <button class="v-btn" onclick="pickV('v3',3,this)">3</button>
+          <button class="v-btn" onclick="pickV('v3',4,this)">4</button>
+          <button class="v-btn" onclick="pickV('v3',5,this)">5<span>很清楚</span></button>
+        </div>
+      </div>
+
+      <button class="btn-submit" id="v-submit" onclick="submitValidation()" disabled style="margin-top:4px;">送出回饋，領取評估報告 →</button>
+      <div id="v-thanks" style="display:none;text-align:center;padding:16px;font-size:14px;color:var(--teal);font-weight:500;">完成！診斷報告已寄到你的 Email，顧問會主動聯繫你 📩</div>
+    </div>
+
+      <!-- PoJ 說明區塊 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin-bottom:20px;">
+        <div style="font-size:11px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-30);margin-bottom:10px;">關於這套設計</div>
+        <div style="font-size:15px;font-weight:500;color:var(--ink);margin-bottom:8px;">為什麼有些問題我們不讓系統來回答？</div>
+        <p style="font-size:13px;color:var(--ink-60);line-height:1.75;margin:0;">不是因為系統做不到，而是因為在高成本、高不確定的決策裡，一個不了解你的系統給的答案，反而會讓你更焦慮。我們設計這套診斷的目的，不是取代真人，而是幫你搞清楚「你真正卡在哪裡」，然後讓對的人在對的時機出現。</p>
+      </div>
+    <div class="result-footer">
+      <p style="font-size:14px;color:var(--ink-60);margin-bottom:16px">顧問看過你的診斷報告後，會在 1–2 個工作天內聯繫你安排諮詢時間。<br>在等待的期間，可以追蹤我們的 IG 看更多愛爾蘭生活資訊。</p>
+      <a class="btn-ig" href="https://www.instagram.com/lilaiireland" target="_blank">📷 追蹤 @lilaiireland</a>
+      <div class="result-note">築夢愛爾國際留遊學顧問</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// ⬇️ 唯一需要你修改的地方：貼上你的 Apps Script 網址
+// ══════════════════════════════════════════════
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBA2qT9bYGrAKAovkbvxw87NkmF7KiocM9GDg6JW4jNaJgVdQMK2F28zFZJEaoTdDJ1A/exec';
+// ══════════════════════════════════════════════
+
+const ans = { q1:'', q2:[], q3:'', q4:'', q5:'' };
+
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function pick1(btn, qId) {
+  btn.closest('.opts').querySelectorAll('.opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  ans[qId] = btn.textContent.trim();
+  const nb = document.getElementById('n'+qId.replace('q',''));
+  if (nb) nb.disabled = false;
+}
+
+function pickM(btn, qId) {
+  btn.classList.toggle('sel');
+  ans[qId] = Array.from(btn.closest('.opts').querySelectorAll('.opt.sel')).map(b => b.textContent.trim());
+  const nb = document.getElementById('n'+qId.replace('q',''));
+  if (nb) nb.disabled = ans[qId].length === 0;
+}
+
+function nxt(n) {
+  if (n === 5) { go('s-form'); return; }
+  document.getElementById('q'+n).classList.remove('active');
+  document.getElementById('q'+(n+1)).classList.add('active');
+  const pct = ((n+1)/5)*100;
+  document.getElementById('prog').style.width = pct+'%';
+  document.getElementById('prog-label').textContent = (n+1)+' / 5';
+  window.scrollTo(0,0);
+}
+
+function prv(n) {
+  document.getElementById('q'+n).classList.remove('active');
+  document.getElementById('q'+(n-1)).classList.add('active');
+  const pct = ((n-1)/5)*100;
+  document.getElementById('prog').style.width = pct+'%';
+  document.getElementById('prog-label').textContent = (n-1)+' / 5';
+  window.scrollTo(0,0);
+}
+
+// ── Blocker logic ──
+function buildBlockers() {
+  const list = [];
+  const q2 = ans.q2;
+  if (q2.some(a => a.includes('預算')))          list.push('budget');
+  if (q2.some(a => a.includes('學校太多')))       list.push('comparison');
+  if (q2.some(a => a.includes('適不適合')))       list.push('direction');
+  if (q2.some(a => a.includes('相信')))           list.push('trust');
+  if (q2.some(a => a.includes('英文')))           list.push('reality');
+  if (q2.some(a => a.includes('工作機會')))       list.push('reality');
+  if (q2.some(a => a.includes('家人')))           list.push('trust');
+  if (ans.q1.includes('比較語校'))                list.push('comparison');
+  if (ans.q1.includes('只是想出去'))              list.push('direction');
+  if (ans.q5.includes('反對'))                    list.push('trust');
+  return [...new Set(list)].slice(0,3);
+}
+
+const blockerMeta = {
+  budget:     { label:'Budget 預算焦慮',     cls:'bp-budget' },
+  comparison: { label:'Comparison 選擇困難', cls:'bp-comparison' },
+  direction:  { label:'Direction 方向模糊',  cls:'bp-direction' },
+  trust:      { label:'Trust 信任不足',      cls:'bp-trust' },
+  reality:    { label:'Reality 現實落差',    cls:'bp-reality' },
+};
+
+const resultCopy = {
+  budget:     { title:'你卡在「預算焦慮」', body:'你有出國的想法，但「不確定錢夠不夠」讓你一直停在起點。這個卡關通常不只是數字問題，有時候是需要先說服家人，有時候是不確定投資值不值得。', badge:'⚡ 建議搭配顧問諮詢', ai:'費用區間試算、每月生活開銷參考、語校學費比較，顧問諮詢前可以先幫你整理好這些數字。', both:'你自己每月可動用的預算是多少？把這個數字帶去諮詢，才能做有意義的試算。', human:'「我的預算夠嗎？值得去嗎？」這類問題背後藏著你的個人財務狀況、時程和家人態度。這不是系統答不了——而是系統的答案在這裡沒有意義。我們刻意讓顧問來接這個部分，因為你需要的是有人真正了解你的情況，而不是一個公式。' },
+  comparison: { title:'你卡在「選擇懸置期」', body:'你已經有出國的想法，但選項太多、不知道怎麼比較，讓你一直停在「還在想」的狀態。資訊越查越多，反而越難決定。', badge:'⚡ 建議預約顧問諮詢', ai:'語校費用比較、都柏林 vs 科克差異、各方案說明，顧問諮詢前可以先整理一份結構化的比較給你。', both:'你的選校條件是什麼？學費上限多少？比較之前先確認這些，才不會選了一圈又回到原點。', human:'「哪間語校最適合我？」這個問題我們選擇不讓系統來回答——不是因為系統做不到，而是因為一個不了解你的系統給的推薦，在這種高成本決策裡反而會讓你更焦慮。顧問會帶著你的診斷報告來，從你的狀況直接切入。' },
+  direction:  { title:'你卡在「動機不明確」', body:'你有去愛爾蘭的念頭，但說不清楚「為什麼要去」或「去了之後要做什麼」。這不是壞事，只是需要先想清楚，而不是先查語校。', badge:'⚡ 建議預約顧問諮詢', ai:'愛爾蘭打工遊學、語校、打工度假的基本說明，顧問諮詢前可以先整理各種選項給你了解。', both:'你最希望這趟旅程帶給你什麼？先想這個問題，諮詢時聊起來會更有方向。', human:'「我適合去嗎？」這個問題系統沒有立場回答。不是因為答案太複雜，而是因為這個判斷需要有人真正理解你——你的背景、你的顧慮、你真正想要什麼。我們設計了顧問諮詢，就是為了在這個時刻讓真人出現，而不是讓系統給你一個你不會信任的答案。' },
+  trust:      { title:'你卡在「不知道該信誰」', body:'你看了很多資訊，但不確定代辦說的是不是客觀的、網路上的分享適不適合自己的狀況。資訊多不等於信心夠。', badge:'⚡ 建議預約顧問諮詢', ai:'費用組成說明、MEI 認證是什麼、顧問服務流程，這些顧問可以在諮詢前先整理給你了解。', both:'你對哪個部分最有疑慮？把具體的問題列出來，諮詢時可以直接問。', human:'信任沒辦法靠系統建立。這就是為什麼在你對資訊來源有疑慮的時候，我們選擇讓顧問直接出現，而不是給你更多整理過的資料——那只會讓你繼續在「再查一篇」的循環裡打轉。' },
+  reality:    { title:'你卡在「現實落差不確定」', body:'你擔心英文程度不夠、不確定能不能找到工作、或對語校效果有疑慮。這類問題需要有人幫你設定合理期待。', badge:'⚡ 建議預約顧問諮詢', ai:'語校分班制度說明、一般英文進步曲線、常見工作類型和薪資範圍，顧問可以在諮詢前先整理參考資料給你。', both:'你現在的英文程度大概是？有沒有具體擔心的情境？帶著這些細節去諮詢。', human:'對語校效果和英文進步的期待，需要有人根據真實案例來幫你校準——這不是一個系統可以負責任地回答的問題。我們選擇讓顧問來做這件事，因為設定錯誤的期待，比沒有期待更危險。' },
+};
+
+function renderResult(blockers) {
+  const primary = blockers[0] || 'comparison';
+  const copy = resultCopy[primary];
+  document.getElementById('r-title').textContent = copy.title;
+  document.getElementById('r-body').textContent = copy.body;
+  document.getElementById('r-badge').textContent = copy.badge;
+  document.getElementById('r-ai').textContent = copy.ai;
+  document.getElementById('r-both').textContent = copy.both;
+  document.getElementById('r-human').textContent = copy.human;
+  const pc = document.getElementById('r-pills');
+  pc.innerHTML = '';
+  (blockers.length ? blockers : ['comparison']).forEach(b => {
+    const m = blockerMeta[b];
+    if (!m) return;
+    const s = document.createElement('span');
+    s.className = 'bpill '+m.cls;
+    s.textContent = m.label;
+    pc.appendChild(s);
+  });
+}
+
+// ── Submit ──
+async function submitForm() {
+  const name    = document.getElementById('f-name').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const ig      = document.getElementById('f-ig').value.trim();
+  const line    = document.getElementById('f-line').value.trim();
+  const q       = document.getElementById('f-q').value.trim();
+  const contact = document.getElementById('f-contact').value;
+  const consent = document.getElementById('f-consent').checked;
+
+  if (!name) { alert('請填寫你的姓名或暱稱。'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('請填寫正確的 Email。'); return;
+  }
+
+  document.getElementById('f-submit').disabled = true;
+
+  const blockers = buildBlockers();
+  const primary  = blockers[0] || 'comparison';
+  const copy     = resultCopy[primary];
+
+  // 只寄顧問通知，不寄學生 email
+  // consentToContact：使用者是否主動同意被聯繫，未勾選時顧問仍會收到Lead但不會主動outreach
+  const payload = {
+    type: 'lead_notify',
+    name, email, ig, line, contact, q,
+    consentToContact: consent,
+    blockers:       blockers.join('、'),
+    primaryBlocker: primary,
+    blockerTitle:   copy.title,
+    q1: ans.q1,
+    q2: Array.isArray(ans.q2) ? ans.q2.join('、') : ans.q2,
+    q3: ans.q3,
+    q4: ans.q4,
+    q5: ans.q5,
+    resultAI:    copy.ai,
+    resultBoth:  copy.both,
+    resultHuman: copy.human,
+    resultBody:  copy.body,
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload),
+    });
+  } catch(e) {
+    console.warn('fetch error:', e);
+  }
+
+  renderResult(blockers);
+  go('s-result');
+}
+
+
+// ── Validation（在結果頁面填） ──
+const vans = { v1: null, v2: null, v3: null, accuracy: null };
+let lowTrustTriggered = false;
+let lowTrustType = null; // 'brand' = 不信任品牌型 / 'clarity' = 自我認知不清型
+
+function pickV(key, val, btn) {
+  btn.closest('div').querySelectorAll('.v-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  vans[key] = val;
+  checkVReady();
+}
+
+// pickV1：Q2「有無釐清方向」，isHighTrust 標記這個選項算高信任還是低信任
+function pickV1(key, val, btn, isHighTrust) {
+  btn.closest('div').querySelectorAll('.opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  vans[key] = val;
+  evaluateTrustState(isHighTrust);
+  checkVReady();
+}
+
+// pickAccuracy：「這個結果準嗎」，isHighTrust 同樣標記信任高低
+function pickAccuracy(val, btn, isHighTrust) {
+  btn.closest('div').querySelectorAll('.opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  vans.accuracy = val;
+  evaluateTrustState(isHighTrust);
+  checkVReady();
+}
+
+// 任一題出現低信任訊號 → 先顯示判定題，不直接分流
+// 禁令：不能把所有低信任訊號當同一種處理，必須先區分「不信任品牌」vs「自我認知不清」
+function evaluateTrustState(isHighTrust) {
+  if (isHighTrust === false && !lowTrustTriggered) {
+    lowTrustTriggered = true;
+    document.getElementById('v-lowtrust-block').style.display = 'block';
+    // 先不跳過 V3，等使用者選完判定題之後再決定
+  }
+}
+
+// 使用者回答完判定題後，才依類型決定提示文案、是否跳過 V3
+function pickLowTrustType(type, btn) {
+  btn.closest('div').querySelectorAll('.opt').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  lowTrustType = type;
+
+  document.getElementById('v-lowtrust-notice-brand').style.display   = (type === 'brand')   ? 'block' : 'none';
+  document.getElementById('v-lowtrust-notice-clarity').style.display = (type === 'clarity')  ? 'block' : 'none';
+
+  // 兩種類型都跳過 V3（行動信心），因為這題對低信任狀態的人意義不大
+  document.getElementById('v3-block').style.display = 'none';
+  vans.v3 = null;
+
+  checkVReady();
+}
+
+function checkVReady() {
+  let ready;
+  if (lowTrustTriggered) {
+    // 低信任分流：必須先完成判定題（lowTrustType 不為 null），再加上 v1、v2、accuracy
+    ready = vans.v1 !== null && vans.v2 !== null && vans.accuracy !== null && lowTrustType !== null;
+  } else {
+    // 一般流程：需要 v1、v2、accuracy、v3 全部答完
+    ready = vans.v1 !== null && vans.v2 !== null && vans.accuracy !== null && vans.v3 !== null;
+  }
+  const btn = document.getElementById('v-submit');
+  if (btn) btn.disabled = !ready;
+}
+
+async function submitValidation() {
+  document.getElementById('v-submit').style.display = 'none';
+  document.getElementById('v-thanks').style.display = 'block';
+
+  const name    = document.getElementById('f-name')?.value.trim()  || '';
+  const email   = document.getElementById('f-email')?.value.trim() || '';
+  const ig      = document.getElementById('f-ig')?.value.trim()    || '';
+  const line    = document.getElementById('f-line')?.value.trim()  || '';
+  const contact = document.getElementById('f-contact')?.value      || '';
+  const q       = document.getElementById('f-q')?.value.trim()     || '';
+
+  const blockers = buildBlockers();
+  const primary  = blockers[0] || 'comparison';
+  const copy     = resultCopy[primary];
+
+  // 寄學生診斷報告 + 存 validation 資料
+  // lowTrustType：'brand'（不信任品牌，建議立即真人介入）或 'clarity'（自我認知不清，建議先給內容再聯繫）
+  // lowTrustSignal: 標記給 Apps Script，true 時代表出現低信任訊號
+  // lowTrustType: 'brand'（不信任品牌→建議立即真人介入）或 'clarity'（自我認知不清→建議先給內容再聯繫，不急著推銷）
+  const payload = {
+    type: 'send_student_email',
+    name, email, ig, line, contact, q,
+    blockers:       blockers.join('、'),
+    primaryBlocker: primary,
+    blockerTitle:   copy.title,
+    q1: ans.q1,
+    q2: Array.isArray(ans.q2) ? ans.q2.join('、') : ans.q2,
+    q3: ans.q3,
+    q4: ans.q4,
+    q5: ans.q5,
+    resultAI:    copy.ai,
+    resultBoth:  copy.both,
+    resultHuman: copy.human,
+    resultBody:  copy.body,
+    val_clarity_before: vans.v1,
+    val_helped:         vans.v2,
+    val_accuracy:       vans.accuracy,
+    val_confidence:     vans.v3,
+    lowTrustSignal:     lowTrustTriggered,
+    lowTrustType:       lowTrustType,
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload),
+    });
+  } catch(e) {
+    console.warn('validation submit error:', e);
+  }
+}
+</script>
+</body>
+</html>

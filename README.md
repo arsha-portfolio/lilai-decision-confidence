@@ -2,7 +2,7 @@
 # Decision Confidence System
 ### A trust-sensitive escalation prototype for high-cost, long-cycle decisions
 
-**Live demo → [arsha-hsia.github.io/lilai-decision-confidence](https://arsha-hsia.github.io/lilai-decision-confidence/)**
+**Live demo → [arsha-hsia.github.io/lilai-decision-confidence](https://arsha-portfolio.github.io/lilai-decision-confidence/)**
 
 Built for [哩來愛爾蘭 · Lilai Ireland](https://www.instagram.com/lilaiireland) — a study abroad consultancy I co-founded in Dublin, specialising in the Taiwan → Ireland market.
 
